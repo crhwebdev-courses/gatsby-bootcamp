@@ -1,17 +1,14 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import Footer from '../components/footer.js';
-import Header from '../components/header.js';
+import Layout from '../components/layout';
 
 const AboutPage = () => {
     return (
-        <div>
-            <Header />
+        <Layout>            
             <h1>About Me</h1>
             <p>I'm a fullstack developer living in the Chicago area.  I spend my time developing web applications, Unity games, and running.</p>
-            <p>For for information, see my <Link to="/contact">Contact page</Link></p>
-            <Footer />
-        </div>
+            <p>For for information, see my <Link to="/contact">Contact page</Link></p>            
+        </Layout>
     );
 };
 

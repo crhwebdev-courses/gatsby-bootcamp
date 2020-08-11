@@ -1,15 +1,12 @@
 import React from 'react';
-import Footer from '../components/footer.js';
-import Header from '../components/header.js';
+import Layout from '../components/layout';
 
 const ContactPage = () => {
     return (
-        <div>
-            <Header />
+        <Layout>            
             <h1>Contact</h1>
-            <p>See my stuff at <a href="https://github.com/crhwebdev" target="_blank">Github</a></p>
-            <Footer />
-        </div>
+            <p>See my stuff at <a href="https://github.com/crhwebdev" target="_blank">Github</a></p>            
+        </Layout>
     );
 };
 
