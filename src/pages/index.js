@@ -1,5 +1,3 @@
 import React from "react"
 
-export default function Home() {
-  return <div>Hello world!</div>
-}
+export default () => <div>The Great Gatsby Bootcamp</div>;
