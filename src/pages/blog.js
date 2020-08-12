@@ -1,13 +1,14 @@
 import React from 'react';
 import Layout from '../components/layout';
 import { Link, graphql, useStaticQuery } from 'gatsby';
+import blogStyles from './blog.module.scss';
 
 const CreatePostList = data => {  
     const formattedData = data.allMarkdownRemark.edges.map(post => {        
         return (
-            <li key={post.node.frontmatter.title}>
+            <li key={post.node.frontmatter.title} className={blogStyles.post}>
                 <Link to={`/blog/${post.node.fields.slug}`}>
-                  <h1>{post.node.frontmatter.title}</h1>
+                  <h2>{post.node.frontmatter.title}</h2>
                   <p>{post.node.frontmatter.date}</p>
                 </Link>
                 
@@ -41,9 +42,9 @@ const BlogPage = (props) => {
     return (
         <Layout>            
             <h1>Blog</h1>            
-            <ul>         
+            <ol className={blogStyles.posts}>         
                 {CreatePostList(data)}       
-            </ul>
+            </ol>
         </Layout>
     );
 };
