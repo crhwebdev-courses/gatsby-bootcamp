@@ -1,10 +1,10 @@
 import React from 'react';
 import Layout from '../components/layout';
 
-const Blog = () => {
+const Blog = () => {        
     return (
         <Layout>
-            This is the blog template
+            This is the blog template for
         </Layout>
     );
 };

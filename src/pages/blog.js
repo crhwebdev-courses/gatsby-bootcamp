@@ -6,15 +6,18 @@ const CreatePostList = data => {
     const formattedData = data.allMarkdownRemark.edges.map(post => {        
         return (
             <li key={post.node.frontmatter.title}>
-                <h1>{post.node.frontmatter.title}</h1>
-                <p>{post.node.frontmatter.date}</p>
+                <Link to={`/blog/${post.node.fields.slug}`}>
+                  <h1>{post.node.frontmatter.title}</h1>
+                  <p>{post.node.frontmatter.date}</p>
+                </Link>
+                
             </li>            
         );
     });
     return formattedData;    
 };
 
-const BlogPage = () => {    
+const BlogPage = (props) => {    
     const data = useStaticQuery(graphql`
     query {
         allMarkdownRemark {
@@ -23,6 +26,9 @@ const BlogPage = () => {
               frontmatter {
                 title
                 date
+              }
+              fields {
+                slug
               }       
             }
           }
@@ -30,6 +36,8 @@ const BlogPage = () => {
       }
     `);
     
+    console.log(props);
+
     return (
         <Layout>            
             <h1>Blog</h1>            
