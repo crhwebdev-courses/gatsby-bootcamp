@@ -21,7 +21,12 @@ const CreatePostList = data => {
 const BlogPage = (props) => {    
     const data = useStaticQuery(graphql`
     query {
-        allMarkdownRemark {
+        allMarkdownRemark (
+          sort: {
+            fields: [frontmatter___date]
+            order: ASC
+          }
+        ){
           edges {
             node {
               frontmatter {
