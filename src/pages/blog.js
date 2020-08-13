@@ -4,14 +4,13 @@ import { Link, graphql, useStaticQuery } from 'gatsby';
 import blogStyles from './blog.module.scss';
 
 const CreatePostList = data => {  
-    const formattedData = data.allMarkdownRemark.edges.map(post => {        
+    const formattedData = data.allContentfulBlogPost.edges.map(post => {        
         return (
-            <li key={post.node.frontmatter.title} className={blogStyles.post}>
-                <Link to={`/blog/${post.node.fields.slug}`}>
-                  <h2>{post.node.frontmatter.title}</h2>
-                  <p>{post.node.frontmatter.date}</p>
-                </Link>
-                
+            <li key={post.node.title} className={blogStyles.post}>
+                <Link to={`/blog/${post.node.slug}`}>
+                  <h2>{post.node.title}</h2>
+                  <p>{post.node.publishedDate}</p>
+                </Link>                
             </li>            
         );
     });
@@ -21,25 +20,23 @@ const CreatePostList = data => {
 const BlogPage = (props) => {    
     const data = useStaticQuery(graphql`
     query {
-        allMarkdownRemark (
-          sort: {
-            fields: [frontmatter___date]
-            order: ASC
-          }
-        ){
-          edges {
-            node {
-              frontmatter {
-                title
-                date
-              }
-              fields {
-                slug
-              }       
-            }
+      allContentfulBlogPost (
+        sort: {
+          fields:publishedDate,
+          order:DESC
+        }
+      ) {
+        edges {
+          node {
+            title
+            slug
+            publishedDate(
+              formatString:"MMMM Do, YYYY"
+            )
           }
         }
       }
+    }
     `);
     
     console.log(props);
